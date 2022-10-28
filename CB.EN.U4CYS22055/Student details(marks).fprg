@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="3.0">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="user"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2022-10-28 10:17:10 AM"/>
+        <attribute name="created" value="dXNlcjtSQUFTOzIwMjItMTAtMjg7MDk6Mjc6MTMgQU07MjAxMA=="/>
+        <attribute name="edited" value="dXNlcjtSQUFTOzIwMjItMTAtMjg7MTA6MTc6MTAgQU07MjsyMTA3"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="ROLL" type="String" array="False" size=""/>
+            <output expression="&quot;ENTER YOUR ROLL NUMBER.&quot;" newline="True"/>
+            <input variable="ROLL"/>
+            <declare name="NAME" type="String" array="False" size=""/>
+            <output expression="&quot;ENTER YOUR NAME.&quot;" newline="True"/>
+            <input variable="NAME"/>
+            <declare name="ADDRESS" type="String" array="False" size=""/>
+            <output expression="&quot;ENTER YOUR ADDRESS&quot;" newline="True"/>
+            <input variable="ADDRESS"/>
+            <declare name="BLOODGROUP" type="String" array="False" size=""/>
+            <output expression="&quot;ENTER YOUR BLOOD GROUP.&quot;" newline="True"/>
+            <input variable="BLOODGROUP"/>
+            <declare name="PHONE" type="Integer" array="False" size=""/>
+            <output expression="&quot;ENTER YOUR PHONE NUMBER&quot;" newline="True"/>
+            <input variable="PHONE"/>
+            <declare name="DEPARTMENT" type="String" array="False" size=""/>
+            <output expression="&quot;ENTER YOUR DEPARTMENT&quot;" newline="True"/>
+            <input variable="DEPARTMENT"/>
+            <declare name="SEM" type="Integer" array="False" size=""/>
+            <output expression="&quot;ENTER SEMESTER NUMBER.&quot;" newline="True"/>
+            <input variable="SEM"/>
+            <declare name="MATH" type="String" array="False" size=""/>
+            <output expression="&quot;ENTER SUBJECT CODE FOR MATHS.&quot;" newline="True"/>
+            <input variable="MATH"/>
+            <declare name="PSAT" type="String" array="False" size=""/>
+            <output expression="&quot;ENTER SUBJECT CODE FOR PSAT.&quot;" newline="True"/>
+            <input variable="PSAT"/>
+            <declare name="PHY" type="String" array="False" size=""/>
+            <output expression="&quot;ENTER SUBJECT CODE FOR PHYSICS.&quot;" newline="True"/>
+            <input variable="PHY"/>
+            <declare name="M1" type="Real" array="False" size=""/>
+            <output expression="&quot;ENTER MATHS(&quot;&amp;MATH&amp; &quot;)MARKS.&quot;" newline="False"/>
+            <input variable="M1"/>
+            <declare name="P1" type="Real" array="False" size=""/>
+            <output expression="&quot;ENTER PSAT(&quot;&amp;PSAT&amp;&quot;)MARKS.&quot;" newline="True"/>
+            <input variable="P1"/>
+            <declare name="P2" type="Real" array="False" size=""/>
+            <output expression="&quot;ENTER PHYSICS(&quot;&amp;PHY&amp;&quot;)MARKS.&quot;" newline="True"/>
+            <input variable="P2"/>
+            <declare name="TOTAL" type="Real" array="False" size=""/>
+            <assign variable="TOTAL" expression="M1+P1+P2"/>
+            <declare name="AVG" type="Real" array="False" size=""/>
+            <assign variable="AVG" expression="TOTAL/3"/>
+            <output expression="&quot;YOUR ROLL NO IS:&quot; &amp;ROLL" newline="True"/>
+            <output expression="&quot;YOUR TOTAL MARKS:&quot; &amp;TOTAL" newline="True"/>
+            <output expression="&quot;YOUR AVERAGE:&quot; &amp;AVG" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>
