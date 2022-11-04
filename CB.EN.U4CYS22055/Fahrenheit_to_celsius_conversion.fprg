@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="3.0">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="CB.EN.U4CYS22055"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2022-11-04 10:53:14 AM"/>
+        <attribute name="created" value="Q0IuRU4uVTRDWVMyMjA1NTsyMDIyMjNNQVlDMDA5MjsyMDIyLTExLTA0OzA5OjI2OjQzIEFNOzMwNjc="/>
+        <attribute name="edited" value="Q0IuRU4uVTRDWVMyMjA1NTsyMDIyMjNNQVlDMDA5MjsyMDIyLTExLTA0OzEwOjUzOjE0IEFNOzI7MzE2Ng=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="THIS PROGRAM CONVERTS FAHRENHEIT TO CELSIUS"/>
+            <declare name="F" type="Real" array="False" size=""/>
+            <output expression="&quot;ENTER THE TEMPERATURE IN FAHRENHEIT&quot;" newline="True"/>
+            <comment text="TEMPERATURE IS BEING RECIEVED FROM THE USER IN FAHRENHEIT AND BEING ASSIGNED TO THE VARIABLE F"/>
+            <input variable="F"/>
+            <declare name="C" type="Real" array="False" size=""/>
+            <assign variable="C" expression="5/9*(F-32)"/>
+            <output expression="&quot;THE TEMPERATURE IN CELSIUS IS &quot;&amp;C" newline="True"/>
+            <comment text="TEMPERATURE IS CONVERTED TO CELSIUS AND ASSIGNED TO THE VARIABLE C"/>
+        </body>
+    </function>
+</flowgorithm>

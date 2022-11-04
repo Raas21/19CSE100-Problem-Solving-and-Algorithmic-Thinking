@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="3.0">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="CB.EN.U4CYS22055"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2022-11-04 10:55:04 AM"/>
+        <attribute name="created" value="Q0IuRU4uVTRDWVMyMjA1NTsyMDIyMjNNQVlDMDA5MjsyMDIyLTExLTA0OzA5OjI2OjQzIEFNOzMwNjc="/>
+        <attribute name="edited" value="Q0IuRU4uVTRDWVMyMjA1NTsyMDIyMjNNQVlDMDA5MjsyMDIyLTExLTA0OzEwOjU1OjA0IEFNOzg7MzE3Mw=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="THIS PROGRAM FINDS REMAINDER WITHOUT USING MODULUS OPERATOR"/>
+            <declare name="INT1" type="Real" array="False" size=""/>
+            <declare name="INT2" type="Real" array="False" size=""/>
+            <output expression="&quot; ENTER AN INTEGER ---&gt; INT1&quot;" newline="True"/>
+            <input variable="INT1"/>
+            <output expression="&quot;ENTER ANOTHER INTEGER ---&gt; INT2 &quot;" newline="True"/>
+            <input variable="INT2"/>
+            <comment text="USER INPUTS TWO INTEGERS INT1 AND INT2. ANOTHER VARIABLE INT3 (INTEGER TYPE) IS DECLARED AND GIVEN THE VALUE INT1/INT2. THIS GIVES US THE QUOTIENT AS INT3 IS AN INTEGER"/>
+            <declare name="INT3" type="Integer" array="False" size=""/>
+            <assign variable="INT3" expression="INT1/INT2"/>
+            <comment text="THIS GIVES US THE QUOTIENT OF INT1/INT2"/>
+            <output expression="&quot;THE REMAINDER IS &quot;&amp; INT1-INT2*INT3" newline="True"/>
+            <comment text="DIVIDEND-QUOTIENT*DIVISOR = REMAINDER"/>
+        </body>
+    </function>
+</flowgorithm>

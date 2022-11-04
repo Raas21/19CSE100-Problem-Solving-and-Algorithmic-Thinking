@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="3.0">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="CB.EN.U4CYS22055"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2022-11-04 10:50:24 AM"/>
+        <attribute name="created" value="Q0IuRU4uVTRDWVMyMjA1NTsyMDIyMjNNQVlDMDA5MjsyMDIyLTExLTA0OzA5OjI2OjQzIEFNOzMwNjc="/>
+        <attribute name="edited" value="Q0IuRU4uVTRDWVMyMjA1NTsyMDIyMjNNQVlDMDA5MjsyMDIyLTExLTA0OzEwOjUwOjI0IEFNOzU7MzE2Nw=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="THIS PROGRAM FINDS THE ROOTS OF QUADRATIC EQUATION FOR WHICH USER INPUTS THE  COEFFICIENTS AND CONSTANT"/>
+            <declare name="A" type="Integer" array="False" size=""/>
+            <declare name="B" type="Integer" array="False" size=""/>
+            <declare name="C" type="Integer" array="False" size=""/>
+            <output expression="&quot;ENTER THE COEFFICIENT OF X^2 ---&gt; A&quot;" newline="True"/>
+            <input variable="A"/>
+            <output expression="&quot;ENTER THE COEFFICIENT OF X ---&gt; B&quot;" newline="True"/>
+            <input variable="B"/>
+            <output expression="&quot;ENTER THE CONSTANT ---&gt; C&quot;" newline="True"/>
+            <input variable="C"/>
+            <output expression="&quot;THE QUADRATIC EQUATION IS &quot;&amp;A&amp;&quot;x^2 +&quot;&amp;B&amp;&quot;x +&quot;&amp;C" newline="True"/>
+            <comment text="USER INPUTS THE COEFFECIENTS OF X^2 AND X AND CONSTANT IN QUADRATIC EQUATION WHICH ARE ASSIGNED TO A, B AND C RESPECTIVELY AND THE QUADRATIC EQUATION IS DISPLAYED TO USER"/>
+            <declare name="D" type="Real" array="False" size=""/>
+            <assign variable="D" expression="(B^2-4*A*C)^0.5"/>
+            <declare name="ALPHA" type="Real" array="False" size=""/>
+            <assign variable="ALPHA" expression="(-B+D)/(2*A)"/>
+            <declare name="BETA" type="Real" array="False" size=""/>
+            <assign variable="BETA" expression="(-B-D)/(2*A)"/>
+            <comment text="ROOTS ARE COMPUTED AND ASSIGNED TO ALPHA  AND BETA"/>
+            <output expression="&quot;THE ROOTS OF THE QUADRATIC EQUATION &quot;&amp;A&amp;&quot;x^2 +&quot;&amp;B&amp;&quot;x +&quot;&amp;C&amp; &quot; ARE&quot;" newline="True"/>
+            <output expression="&quot;ROOT 1 IS&quot; &amp;ALPHA" newline="True"/>
+            <output expression="&quot;ROOT 2 IS &quot; &amp;BETA" newline="True"/>
+            <comment text="ROOTS ARE DISPLAYED TO USER"/>
+        </body>
+    </function>
+</flowgorithm>

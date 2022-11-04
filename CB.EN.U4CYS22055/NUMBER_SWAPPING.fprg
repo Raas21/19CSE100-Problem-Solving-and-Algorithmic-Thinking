@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="3.0">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="CB.EN.U4CYS22055"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2022-11-04 11:24:36 AM"/>
+        <attribute name="created" value="Q0IuRU4uVTRDWVMyMjA1NTsyMDIyMjNNQVlDMDA5MjsyMDIyLTExLTA0OzA5OjI2OjQzIEFNOzMwNjc="/>
+        <attribute name="edited" value="Q0IuRU4uVTRDWVMyMjA1NTsyMDIyMjNNQVlDMDA5MjsyMDIyLTExLTA0OzExOjI0OjM2IEFNOzg7MzE3NQ=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="SWAPS VALUES OF TWO VARAIBLES WITHOUT USING A THIRD VARIABLE"/>
+            <declare name="A" type="Integer" array="False" size=""/>
+            <declare name="B" type="Integer" array="False" size=""/>
+            <output expression="&quot; ENTER AN INTEGER ---&gt;A&quot;" newline="True"/>
+            <input variable="A"/>
+            <output expression="&quot; ENTER ANOTHER INTEGER ---&gt;B&quot;" newline="True"/>
+            <comment text="USER INPUTS THE VALUES OF BOTH INTEGERS"/>
+            <input variable="B"/>
+            <output expression="&quot;A= &quot;&amp;A&amp; &quot; AND B= &quot; &amp;B" newline="True"/>
+            <comment text="SWAPPING"/>
+            <assign variable="A" expression="A+B"/>
+            <assign variable="B" expression="A-B"/>
+            <assign variable="A" expression="A-B"/>
+            <output expression="&quot;AFTER SWAPPING A= &quot; &amp;A&amp; &quot; B= &quot; &amp;B" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>

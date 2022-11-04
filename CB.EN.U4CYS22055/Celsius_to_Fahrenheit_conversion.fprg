@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="3.0">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="CB.EN.U4CYS22055"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2022-11-04 11:23:14 AM"/>
+        <attribute name="created" value="Q0IuRU4uVTRDWVMyMjA1NTsyMDIyMjNNQVlDMDA5MjsyMDIyLTExLTA0OzA5OjA3OjA3IEFNOzMwNjY="/>
+        <attribute name="edited" value="Q0IuRU4uVTRDWVMyMjA1NTsyMDIyMjNNQVlDMDA5MjsyMDIyLTExLTA0OzExOjIzOjE0IEFNOzQ7MzE2Ng=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="THIS PROGRAM CONVERTS CELSIUS TO FAHRENHEIT"/>
+            <declare name="C" type="Real" array="False" size=""/>
+            <output expression="&quot;enter temperature in celsius&quot;" newline="True"/>
+            <input variable="C"/>
+            <comment text="The temperature is being recieved in celsius from the user and assigned to the variable C"/>
+            <declare name="F" type="Real" array="False" size=""/>
+            <assign variable="F" expression="9/5*C +32"/>
+            <comment text="The temperature which was recieved from the user in celsius is being converted to fahrenheit and being assigned to the variable F."/>
+            <output expression="&quot;The temperature in fahrenheit is &quot; &amp;F" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>
