@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="3.0">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="cb.en.u4cys22055"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2022-11-18 12:29:08 PM"/>
+        <attribute name="created" value="Y2IuZW4udTRjeXMyMjA1NTsyMDIyMjNNQVlDMDA5MjsyMDIyLTExLTE4OzA4OjUwOjI5IEFNOzMzMjg="/>
+        <attribute name="edited" value="Y2IuZW4udTRjeXMyMjA1NTsyMDIyMjNNQVlDMDA5MjsyMDIyLTExLTE4OzEwOjM4OjI0IEFNOzQ7MzQzMw=="/>
+        <attribute name="edited" value="dXNlcjtSQUFTOzIwMjItMTEtMTg7MTI6Mjk6MDggUE07MTsyMTMz"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="creating a basic atm software that gets name ,acct no, pin and balance from user and decides if transaction is possible"/>
+            <output expression="&quot;Welcome to the atm&quot;" newline="True"/>
+            <declare name="Name" type="String" array="False" size=""/>
+            <output expression="&quot;Please enter your name.&quot;" newline="True"/>
+            <input variable="Name"/>
+            <declare name="acct" type="Integer" array="False" size=""/>
+            <output expression="&quot;please enter your account number&quot;" newline="True"/>
+            <input variable="acct"/>
+            <declare name="balance" type="Real" array="False" size=""/>
+            <output expression="&quot;please enter your account balance&quot;" newline="True"/>
+            <input variable="balance"/>
+            <declare name="pin" type="String" array="False" size=""/>
+            <output expression="&quot;please enter your secret pin&quot;" newline="True"/>
+            <input variable="pin"/>
+            <declare name="min" type="Real" array="False" size=""/>
+            <assign variable="min" expression="500"/>
+            <if expression="len(pin)=4">
+                <then>
+                    <declare name="amt" type="Real" array="False" size=""/>
+                    <output expression="&quot;please enter amount to be withdrawn.&quot;" newline="True"/>
+                    <input variable="amt"/>
+                    <if expression="balance&gt;=min">
+                        <then>
+                            <declare name="secret" type="String" array="False" size=""/>
+                            <output expression="&quot;please enter your pin&quot;" newline="True"/>
+                            <input variable="secret"/>
+                            <if expression="secret==pin">
+                                <then>
+                                    <if expression="balance-amt&gt;0">
+                                        <then>
+                                            <output expression="&quot;transaction successful. Updated account balance is &quot; &amp;balance-amt" newline="True"/>
+                                            <if expression="balance-amt&lt;min">
+                                                <then>
+                                                    <output expression="&quot;current balance is &quot; &amp;balance-amt &amp;&quot; Please deposit money to maintain minimum balance Rs. &quot;&amp;min&amp; &quot; otherwise you may attract penalties.&quot;" newline="True"/>
+                                                </then>
+                                                <else/>
+                                            </if>
+                                        </then>
+                                        <else>
+                                            <output expression="&quot;transaction unsuccessful due to insufficient funds. please run again and enter amount to be withdrawn lower than &quot; &amp;balance" newline="True"/>
+                                            <breakpoint expression="" always="True"/>
+                                        </else>
+                                    </if>
+                                </then>
+                                <else>
+                                    <output expression="&quot;Invalid pin. Please run again and enter correct pin.&quot;" newline="True"/>
+                                    <breakpoint expression="" always="True"/>
+                                </else>
+                            </if>
+                        </then>
+                        <else>
+                            <if expression="balance&lt;0">
+                                <then>
+                                    <output expression="&quot;balance cannot be negative. please run again and enter correct balance.&quot;" newline="True"/>
+                                </then>
+                                <else>
+                                    <output expression="&quot;Minimum balance for withdrawal is 500. Due to insufficient funds this transcation can't be processed. &quot;" newline="True"/>
+                                </else>
+                            </if>
+                            <breakpoint expression="" always="True"/>
+                        </else>
+                    </if>
+                </then>
+                <else>
+                    <output expression="&quot;Invalid pin. Pin must be of four digits.&quot;" newline="True"/>
+                    <breakpoint expression="" always="True"/>
+                </else>
+            </if>
+            <output expression="&quot;Thank you for using this atm.&quot;" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>
