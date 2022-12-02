@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="3.0">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="cb.en.u4cys22055"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2022-12-02 09:33:56 AM"/>
+        <attribute name="created" value="Y2IuZW4udTRjeXMyMjA1NTsyMDIyMjNNQVlDMDA5MjsyMDIyLTEyLTAyOzA4OjU0OjUyIEFNOzMzMjI="/>
+        <attribute name="edited" value="Y2IuZW4udTRjeXMyMjA1NTsyMDIyMjNNQVlDMDA5MjsyMDIyLTEyLTAyOzA5OjMzOjU2IEFNOzM7MzQzNA=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="CREATING A PROGRAMME THAT GETS THE VALUE OF N FROM USER AND CALCULATES SUM OF FIRST N NATURAL NUMBERS"/>
+            <declare name="n" type="Integer" array="False" size=""/>
+            <output expression="&quot;enter the number upto which you want to find out the sum.&quot;" newline="True"/>
+            <input variable="n"/>
+            <comment text="GETTING VALUE OF N FROM USER"/>
+            <declare name="sum" type="Integer" array="False" size=""/>
+            <assign variable="sum" expression="0"/>
+            <declare name="i" type="Integer" array="False" size=""/>
+            <assign variable="i" expression="1"/>
+            <while expression="i&lt;=n">
+                <assign variable="sum" expression="sum+i"/>
+                <assign variable="i" expression="i+1"/>
+                <comment text="ADDING I TO SUM AND INCREMENTING I BY 1 IN EVERY ITERATION OF LOOP SO THAT WE GET SUM OF FIRST N NATURAL NUMBERS"/>
+            </while>
+            <output expression="&quot;the sum of the first &quot; &amp;n&amp; &quot; natural numbers is &quot; &amp;sum" newline="True"/>
+            <comment text="DISPLAYING SUM TO USER"/>
+        </body>
+    </function>
+</flowgorithm>

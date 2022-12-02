@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="3.0">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="cb.en.u4cys22055"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2022-12-02 09:37:07 AM"/>
+        <attribute name="created" value="Y2IuZW4udTRjeXMyMjA1NTsyMDIyMjNNQVlDMDA5MjsyMDIyLTEyLTAyOzA4OjU0OjUyIEFNOzMzMjI="/>
+        <attribute name="edited" value="Y2IuZW4udTRjeXMyMjA1NTsyMDIyMjNNQVlDMDA5MjsyMDIyLTEyLTAyOzA5OjM3OjA3IEFNOzM7MzQzNA=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="CREATING A PROGRAMME THAT CALCULATES VALUE OF FACTORIAL OF Nth NATURAL NUMBER. N IS RECIEVED FROM USER."/>
+            <declare name="n" type="Integer" array="False" size=""/>
+            <output expression="&quot;enter the number that you want to find the factorial of.&quot;" newline="True"/>
+            <input variable="n"/>
+            <comment text="GETTING VALUE OF N FROM USER AND ASSIGNING TO VARAIBLE N"/>
+            <declare name="product" type="Integer" array="False" size=""/>
+            <assign variable="product" expression="1"/>
+            <declare name="i" type="Integer" array="False" size=""/>
+            <assign variable="i" expression="1"/>
+            <while expression="i&lt;=n">
+                <assign variable="product" expression="product*i"/>
+                <assign variable="i" expression="i+1"/>
+                <comment text="MULTIPLYING PRODUCT WITH I AND INCREMENTING VALUE OF I BY 1 EVERY ITERATION TO GET FACTORIAL OF NTH NATURAL NUMBER"/>
+            </while>
+            <output expression="&quot;the factorial of &quot;&amp;n&amp; &quot; is &quot;&amp;product" newline="True"/>
+            <comment text="DISPLAYING PRODUCT TO USER"/>
+        </body>
+    </function>
+</flowgorithm>
