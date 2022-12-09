@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="3.0">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="user"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2022-12-09 11:17:27 AM"/>
+        <attribute name="created" value="dXNlcjtSQUFTOzIwMjItMTItMDk7MDk6MDk6MzUgQU07MjAxNQ=="/>
+        <attribute name="edited" value="dXNlcjtSQUFTOzIwMjItMTItMDk7MTE6MTc6MjcgQU07MzsyMTE4"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="&quot;creating a programme that searches through an array with user given values and displays the highest and lowes numbers in that array.&quot;"/>
+            <declare name="numbers" type="Integer" array="True" size="5"/>
+            <declare name="no, i" type="Integer" array="False" size=""/>
+            <for variable="i" start="0" end="4" direction="inc" step="1">
+                <comment text="&quot;getting values to store in array from user.&quot;"/>
+                <output expression="&quot;ENTER ELEMENT NUMBER &quot;&amp;i&amp; &quot; OF THE ARRAY.&quot;" newline="True"/>
+                <input variable="no"/>
+                <assign variable="numbers[i]" expression="no"/>
+            </for>
+            <declare name="high, low" type="Integer" array="False" size=""/>
+            <assign variable="high" expression="0"/>
+            <assign variable="low" expression="0"/>
+            <for variable="i" start="0" end="3" direction="inc" step="1">
+                <comment text="&quot;checking conditions for highest and lowest numbers in arrays and storing them to variables high and low respectively.&quot;"/>
+                <if expression="numbers[i]&lt;numbers[i+1]">
+                    <then>
+                        <assign variable="high" expression="numbers[i+1]"/>
+                    </then>
+                    <else>
+                        <if expression="numbers[i]&gt;numbers[i+1]">
+                            <then>
+                                <assign variable="low" expression="numbers[i+1]"/>
+                            </then>
+                            <else/>
+                        </if>
+                    </else>
+                </if>
+            </for>
+            <output expression="&quot;highest number in array is :&quot; &amp;high" newline="True"/>
+            <output expression="&quot;smallest number in array is :&quot; &amp;low" newline="True"/>
+            <comment text="displaying highest and lowest values in array to user."/>
+        </body>
+    </function>
+</flowgorithm>

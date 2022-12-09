@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="3.0">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="user"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2022-12-09 02:38:22 PM"/>
+        <attribute name="created" value="dXNlcjtSQUFTOzIwMjItMTItMDk7MDk6MDk6MzUgQU07MjAxNQ=="/>
+        <attribute name="edited" value="dXNlcjtSQUFTOzIwMjItMTItMDk7MTE6MzI6MjggQU07MTt1c2VyO1JBQVM7MjAyMi0xMi0wOTswOTowOTozNSBBTTtudW1iZXJzYXJyYXkuZnByZzs2MDMx"/>
+        <attribute name="edited" value="dXNlcjtSQUFTOzIwMjItMTItMDk7MDI6Mzg6MjIgUE07NTsyMTMz"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="&quot;creating a programme that takes input for elements for an  integer array and prints them all.&quot;"/>
+            <declare name="numbers" type="Integer" array="True" size="10"/>
+            <declare name="no, i, j" type="Integer" array="False" size=""/>
+            <for variable="i" start="0" end="9" direction="inc" step="1">
+                <comment text="&quot;receiving elements from user and storing in array.&quot;"/>
+                <output expression="&quot;ENTER ELEMENT NUMBER &quot;&amp;i&amp; &quot; OF THE ARRAY.&quot;" newline="True"/>
+                <input variable="no"/>
+                <assign variable="numbers[i]" expression="no"/>
+            </for>
+            <declare name="count" type="Integer" array="False" size=""/>
+            <assign variable="count" expression="0"/>
+            <output expression="&quot;enter the element you would like to find the frequency of:&quot;" newline="True"/>
+            <input variable="j"/>
+            <declare name="p" type="Boolean" array="False" size=""/>
+            <for variable="i" start="0" end="9" direction="inc" step="1">
+                <comment text="&quot;traversing the array to find out if given element exists in array and if it does how many times does it repeat in array.&quot;"/>
+                <if expression="j== numbers[i]">
+                    <then>
+                        <assign variable="count" expression="count+1"/>
+                        <assign variable="p" expression="True"/>
+                        <comment text="&quot;if given element exists in array then count is incremented by 1 otherwise nothing happens.&quot;"/>
+                    </then>
+                    <else>
+                        <assign variable="p" expression="False"/>
+                    </else>
+                </if>
+            </for>
+            <comment text="&quot;if element exists in array then p will have boolean value true stored in it otherwise it will be false, if true then count is there otherwise as element doesnt exist in array there is no count&quot;"/>
+            <if expression="p== True">
+                <then>
+                    <output expression="&quot;the frequency of the element &quot;&amp;j&amp;&quot; is: &quot;&amp;count" newline="True"/>
+                </then>
+                <else>
+                    <output expression="&quot;the entered element doesnt exist in the array.&quot;" newline="True"/>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>

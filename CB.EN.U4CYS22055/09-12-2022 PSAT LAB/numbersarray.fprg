@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="3.0">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="user"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2022-12-09 11:19:12 AM"/>
+        <attribute name="created" value="dXNlcjtSQUFTOzIwMjItMTItMDk7MDk6MDk6MzUgQU07MjAxNQ=="/>
+        <attribute name="edited" value="dXNlcjtSQUFTOzIwMjItMTItMDk7MTE6MTk6MTIgQU07MzsyMTE0"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="&quot;creating a programme that takes input for elements for an  integer array and prints them all.&quot;"/>
+            <declare name="numbers" type="Integer" array="True" size="10"/>
+            <declare name="no, i" type="Integer" array="False" size=""/>
+            <for variable="i" start="0" end="9" direction="inc" step="1">
+                <comment text="&quot;since there are 10 elements the indices range from 0 to 9.each element is being asked from user and stored in the array integers.&quot;"/>
+                <output expression="&quot;ENTER ELEMENT NUMBER &quot;&amp;i&amp; &quot; OF THE ARRAY.&quot;" newline="True"/>
+                <input variable="no"/>
+                <assign variable="numbers[i]" expression="no"/>
+            </for>
+            <for variable="i" start="0" end="9" direction="inc" step="1">
+                <comment text="&quot;all 10 elements are being displayed to user at once.&quot;"/>
+                <output expression="&quot;ELEMENT NUMBER &quot;&amp;i&amp; &quot; OF THE ARRAY IS &quot;&amp;numbers[i]" newline="True"/>
+            </for>
+        </body>
+    </function>
+</flowgorithm>

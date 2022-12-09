@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="3.0">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="user"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2022-12-09 11:29:44 AM"/>
+        <attribute name="created" value="dXNlcjtSQUFTOzIwMjItMTItMDk7MDk6MjI6MzIgQU07MjAwNw=="/>
+        <attribute name="edited" value="dXNlcjtSQUFTOzIwMjItMTItMDk7MTE6Mjk6NDQgQU07NTsyMTIy"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="&quot;creating a programme where user inputs number of students ,roll numbers, marks for five subjects for each student and output of total and average of each student along with roll number is diplayed at last. the total and average marks of class is also displayed to user&quot;"/>
+            <declare name="n, i, total, T" type="Integer" array="False" size=""/>
+            <declare name="avg, A" type="Real" array="False" size=""/>
+            <declare name="mark, rollno" type="Integer" array="False" size=""/>
+            <output expression="&quot;enter the number of students in the class.&quot;" newline="True"/>
+            <input variable="n"/>
+            <comment text="&quot;declaring three arrays marks roll no and subjects for storing total marks of each student, roll no of each student and  marks of each student for five subjects respectively.&quot;"/>
+            <declare name="marks" type="Integer" array="True" size="n"/>
+            <declare name="subjects" type="Integer" array="True" size="5"/>
+            <declare name="roll" type="Integer" array="True" size="n"/>
+            <assign variable="i" expression="0"/>
+            <declare name="k" type="Integer" array="False" size=""/>
+            <assign variable="T" expression="0"/>
+            <for variable="i" start="0" end="n-1" direction="inc" step="1">
+                <comment text="&quot;getting values of rollno of student and marks of corresponding student in 5 subjects and calculating total marks of student and storing to the arrays, rollno, subjects and marks respectively.&quot;"/>
+                <output expression="&quot;enter the roll number of student number &quot;&amp;i+1" newline="True"/>
+                <input variable="rollno"/>
+                <assign variable="total" expression="0"/>
+                <output expression="&quot;enter the marks of roll number &quot;&amp;rollno&amp;&quot; in the subjects:&quot;" newline="True"/>
+                <output expression="&quot;maths&quot;" newline="True"/>
+                <input variable="subjects[0]"/>
+                <output expression="&quot;physics&quot;" newline="True"/>
+                <input variable="subjects[1]"/>
+                <output expression="&quot;chemistry&quot;" newline="True"/>
+                <input variable="subjects[2]"/>
+                <output expression="&quot;PSAT&quot;" newline="True"/>
+                <input variable="subjects[3]"/>
+                <output expression="&quot;english&quot;" newline="True"/>
+                <input variable="subjects[4]"/>
+                <for variable="k" start="0" end="4" direction="inc" step="1">
+                    <assign variable="total" expression="total+subjects[k]"/>
+                </for>
+                <assign variable="marks[i]" expression="total"/>
+                <assign variable="roll[i]" expression="rollno"/>
+            </for>
+            <for variable="i" start="0" end="n-1" direction="inc" step="1">
+                <comment text="&quot;displaying student wise average and total marks to user and also calculating total marks of class and storing to variable T.&quot;"/>
+                <output expression="&quot;the total marks of roll number &quot;&amp;roll[i]&amp; &quot; is: &quot;&amp;marks[i]" newline="True"/>
+                <output expression="&quot;the average marks of roll number &quot;&amp;roll[i]&amp; &quot; is: &quot;&amp;marks[i]/n" newline="True"/>
+                <assign variable="T" expression="marks[i]+T"/>
+            </for>
+            <comment text="&quot;displaying average and total marks of entire class to user.&quot;"/>
+            <assign variable="A" expression="T/n"/>
+            <output expression="&quot;the total marks of the class is : &quot;&amp;T" newline="True"/>
+            <output expression="&quot;the average marks of the class is : &quot;&amp;A" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>
