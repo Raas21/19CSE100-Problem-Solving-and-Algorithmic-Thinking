@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="3.0">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="user"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2023-01-06 11:34:06 PM"/>
+        <attribute name="created" value="dXNlcjtSQUFTOzIwMjMtMDEtMDY7MTA6NDU6MzcgUE07MjAyMA=="/>
+        <attribute name="edited" value="dXNlcjtSQUFTOzIwMjMtMDEtMDY7MTE6MjE6MzcgUE07NTt1c2VyO1JBQVM7MjAyMy0wMS0wNjsxMDo0NTozNyBQTTs0MjA2"/>
+        <attribute name="edited" value="dXNlcjtSQUFTOzIwMjMtMDEtMDY7MTE6MzQ6MDYgUE07NDsyMTI2"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="n" type="Integer" array="False" size=""/>
+            <output expression="&quot;enter number of steels that you would like to grade.&quot;" newline="True"/>
+            <input variable="n"/>
+            <declare name="i" type="Integer" array="False" size=""/>
+            <declare name="conditions" type="Real" array="True" size="3"/>
+            <declare name="hardness, tensile, grade" type="Integer" array="False" size=""/>
+            <declare name="carbon" type="Real" array="False" size=""/>
+            <for variable="i" start="0" end="n-1" direction="inc" step="1">
+                <output expression="&quot;enter the hardness of steel &quot;&amp;i+1" newline="True"/>
+                <input variable="hardness"/>
+                <while expression="hardness&lt;=0">
+                    <output expression="&quot;hardness of steel is always greater than 0. please enter valid hardness of steel.&quot;" newline="True"/>
+                    <input variable="hardness"/>
+                </while>
+                <assign variable="conditions[0]" expression="hardness"/>
+                <output expression="&quot;enter the tensile strength of steel &quot;&amp;i+1" newline="True"/>
+                <input variable="tensile"/>
+                <while expression="tensile&lt;=0">
+                    <output expression="&quot;tensile strength of steel is always greater than 0. please enter valid tensile strength of steel.&quot;" newline="True"/>
+                    <input variable="tensile"/>
+                </while>
+                <assign variable="conditions[1]" expression="tensile"/>
+                <output expression="&quot;enter the carbon content of steel &quot;&amp;i+1" newline="True"/>
+                <input variable="carbon"/>
+                <while expression="carbon&lt;0 || carbon&gt;100">
+                    <output expression="&quot;carbon content of steel always lies between 0 and 100. please enter valid tensile strength of steel.&quot;" newline="True"/>
+                    <input variable="carbon"/>
+                </while>
+                <assign variable="conditions[2]" expression="carbon"/>
+                <assign variable="grade" expression="gradesteel(conditions)"/>
+                <output expression="&quot;Grade of steel &quot; &amp;i+1&amp; &quot;is &quot; &amp;grade" newline="True"/>
+            </for>
+        </body>
+    </function>
+    <function name="gradesteel" type="Integer" variable="grade">
+        <parameters>
+            <parameter name="conditions" type="Real" array="True"/>
+        </parameters>
+        <body>
+            <declare name="grade" type="Integer" array="False" size=""/>
+            <declare name="h, t, c" type="Boolean" array="False" size=""/>
+            <if expression="conditions[0]&gt;50">
+                <then>
+                    <assign variable="h" expression="True"/>
+                </then>
+                <else>
+                    <assign variable="h" expression="False"/>
+                </else>
+            </if>
+            <if expression="conditions[1]&gt;5600">
+                <then>
+                    <assign variable="t" expression="True"/>
+                </then>
+                <else>
+                    <assign variable="t" expression="False"/>
+                </else>
+            </if>
+            <if expression="conditions[2]&lt;0.7">
+                <then>
+                    <assign variable="c" expression="True"/>
+                </then>
+                <else>
+                    <assign variable="c" expression="False"/>
+                </else>
+            </if>
+            <if expression="h == True &amp;&amp; t == True &amp;&amp; c==True">
+                <then>
+                    <assign variable="grade" expression="10"/>
+                </then>
+                <else>
+                    <if expression="h == True &amp;&amp; t == False &amp;&amp; c==True">
+                        <then>
+                            <assign variable="grade" expression="9"/>
+                        </then>
+                        <else>
+                            <if expression="h == False &amp;&amp; t == True &amp;&amp; c==True">
+                                <then>
+                                    <assign variable="grade" expression="8"/>
+                                </then>
+                                <else>
+                                    <if expression="h == True &amp;&amp; t == True &amp;&amp; c==False">
+                                        <then>
+                                            <assign variable="grade" expression="7"/>
+                                        </then>
+                                        <else>
+                                            <if expression="h == True || t == True || c==True">
+                                                <then>
+                                                    <assign variable="grade" expression="6"/>
+                                                </then>
+                                                <else>
+                                                    <if expression="h == False &amp;&amp; t == False &amp;&amp; c==False">
+                                                        <then>
+                                                            <assign variable="grade" expression="5"/>
+                                                        </then>
+                                                        <else/>
+                                                    </if>
+                                                </else>
+                                            </if>
+                                        </else>
+                                    </if>
+                                </else>
+                            </if>
+                        </else>
+                    </if>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>

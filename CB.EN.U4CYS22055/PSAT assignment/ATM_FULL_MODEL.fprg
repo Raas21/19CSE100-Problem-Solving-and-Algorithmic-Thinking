@@ -1,0 +1,204 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="3.0">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="cb.en.u4cys22055"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2023-01-07 12:13:33 PM"/>
+        <attribute name="created" value="Y2IuZW4udTRjeXMyMjA1NTsyMDIyMjNNQVlDMDA5MjsyMDIyLTExLTE4OzA4OjUwOjI5IEFNOzMzMjg="/>
+        <attribute name="edited" value="Y2IuZW4udTRjeXMyMjA1NTsyMDIyMjNNQVlDMDA5MjsyMDIyLTExLTE4OzEwOjQ4OjM3IEFNOzY7MzQ0MA=="/>
+        <attribute name="edited" value="dXNlcjtSQUFTOzIwMjMtMDEtMDc7MTI6MTM6MzMgUE07MTM7MjE3Mw=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <output expression="&quot;Welcome to the online banking system&quot;" newline="True"/>
+            <declare name="n, l, i" type="Integer" array="False" size=""/>
+            <declare name="balance" type="Real" array="False" size=""/>
+            <output expression="&quot;enter number of users &quot;" newline="True"/>
+            <input variable="n"/>
+            <declare name="acctno, pinno" type="Integer" array="True" size="n"/>
+            <declare name="bool" type="Boolean" array="True" size="n"/>
+            <declare name="min" type="Real" array="False" size=""/>
+            <assign variable="min" expression="500"/>
+            <for variable="l" start="0" end="n-1" direction="inc" step="1">
+                <output expression="&quot;user &quot;&amp;l+1&amp; &quot; please enter your bank details &quot;" newline="True"/>
+                <declare name="acct" type="Integer" array="False" size=""/>
+                <output expression="&quot;please enter your account number&quot;" newline="True"/>
+                <input variable="acct"/>
+                <assign variable="acctno[l]" expression="acct"/>
+                <declare name="pin" type="Integer" array="False" size=""/>
+                <output expression="&quot;please enter your secret pin&quot;" newline="True"/>
+                <input variable="pin"/>
+                <assign variable="pinno[l]" expression="pin"/>
+                <declare name="pins" type="String" array="False" size=""/>
+                <assign variable="pins" expression="ToString(pin)"/>
+                <while expression="len(pins)!=4 || pin&lt;0">
+                    <output expression="&quot;length of pin should be 4 and pin should be greater than 0. enter valid pin&quot;" newline="True"/>
+                    <input variable="pinno[l]"/>
+                </while>
+            </for>
+            <declare name="will" type="String" array="False" size=""/>
+            <do expression="will==&quot;y&quot;">
+                <declare name="no" type="Integer" array="False" size=""/>
+                <output expression="&quot;please enter account number that you would like to use.&quot;" newline="True"/>
+                <input variable="no"/>
+                <for variable="i" start="0" end="n-1" direction="inc" step="1">
+                    <if expression="no == acctno[i]">
+                        <then>
+                            <assign variable="bool[i]" expression="True"/>
+                            <declare name="fn" type="Integer" array="False" size=""/>
+                            <output expression="&quot; which function would you like to use.&quot;" newline="True"/>
+                            <output expression="&quot;1 ---&gt; WIthdraw money&quot;" newline="True"/>
+                            <output expression="&quot;2 ---&gt; deposit money&quot;" newline="True"/>
+                            <output expression="&quot;3 ---&gt; refer a friend&quot;" newline="True"/>
+                            <input variable="fn"/>
+                            <assign variable="balance" expression="Random(20000)"/>
+                            <if expression="fn == 1">
+                                <then>
+                                    <declare name="amt" type="Real" array="False" size=""/>
+                                    <output expression="&quot;please enter amount to be withdrawn.&quot;" newline="True"/>
+                                    <input variable="amt"/>
+                                    <while expression="amt&lt;=0">
+                                        <output expression="&quot;minimum amount that can be withdrawn is Rs 1. please enter valid amount to be withdrawn.&quot;" newline="True"/>
+                                        <input variable="amt"/>
+                                    </while>
+                                    <if expression="balance&gt;=min">
+                                        <then>
+                                            <declare name="secret" type="Integer" array="False" size=""/>
+                                            <output expression="&quot;please enter your pin&quot;" newline="True"/>
+                                            <input variable="secret"/>
+                                            <if expression="secret==pinno[i]">
+                                                <then>
+                                                    <if expression="balance-amt&gt;0">
+                                                        <then>
+                                                            <output expression="&quot;transaction successful. Updated account balance is &quot; &amp;balance-amt" newline="True"/>
+                                                            <if expression="balance-amt&lt;min">
+                                                                <then>
+                                                                    <output expression="&quot;current balance is &quot; &amp;balance-amt &amp;&quot; Please deposit money to maintain minimum balance Rs. &quot; &amp;min&amp; &quot;otherwise you may attract penalties.&quot;" newline="True"/>
+                                                                </then>
+                                                                <else/>
+                                                            </if>
+                                                        </then>
+                                                        <else>
+                                                            <output expression="&quot;transaction unsuccessful due to insufficient funds. please run again and enter amount to be withdrawn lower than &quot; &amp;balance" newline="True"/>
+                                                        </else>
+                                                    </if>
+                                                </then>
+                                                <else>
+                                                    <output expression="&quot;Invalid pin. Please run again and enter correct pin.&quot;" newline="True"/>
+                                                </else>
+                                            </if>
+                                        </then>
+                                        <else>
+                                            <if expression="balance&lt;0">
+                                                <then>
+                                                    <output expression="&quot;balance cannot be negative. please run again and enter correct balance.&quot;" newline="True"/>
+                                                </then>
+                                                <else>
+                                                    <output expression="&quot;Minimum balance for withdrawal is 500. Due to insufficient funds this transcation can't be processed. &quot;" newline="True"/>
+                                                </else>
+                                            </if>
+                                        </else>
+                                    </if>
+                                </then>
+                                <else>
+                                    <if expression="fn==2">
+                                        <then>
+                                            <declare name="amt" type="Real" array="False" size=""/>
+                                            <output expression="&quot;please enter amount you would like to deposit.&quot;" newline="True"/>
+                                            <input variable="amt"/>
+                                            <while expression="amt&lt;=0">
+                                                <output expression="&quot;minimum amount that can be deposited is Rs 1. please enter valid amount to be deposited.&quot;" newline="True"/>
+                                                <input variable="amt"/>
+                                            </while>
+                                            <declare name="secretpin" type="Integer" array="False" size=""/>
+                                            <output expression="&quot;please enter your pin&quot;" newline="True"/>
+                                            <input variable="secretpin"/>
+                                            <if expression="pinno[i] == secretpin">
+                                                <then>
+                                                    <output expression="&quot;deposit successful.&quot;" newline="True"/>
+                                                    <output expression="&quot;current account balance is &quot; &amp;balance+amt" newline="True"/>
+                                                </then>
+                                                <else>
+                                                    <output expression="&quot;Invalid pin. Transaction unsuccessful.&quot;" newline="True"/>
+                                                </else>
+                                            </if>
+                                        </then>
+                                        <else>
+                                            <if expression="fn==3">
+                                                <then>
+                                                    <declare name="secpin" type="Integer" array="False" size=""/>
+                                                    <output expression="&quot;please enter your pin.&quot;" newline="True"/>
+                                                    <input variable="secpin"/>
+                                                    <if expression="pinno[i]==secpin">
+                                                        <then>
+                                                            <declare name="k" type="Integer" array="False" size=""/>
+                                                            <output expression="&quot;enter number of people you have referred&quot;" newline="True"/>
+                                                            <input variable="k"/>
+                                                            <output expression="&quot;updated balance = &quot;&amp; balance+50*k" newline="True"/>
+                                                        </then>
+                                                        <else>
+                                                            <output expression="&quot;invalid pin&quot;" newline="True"/>
+                                                        </else>
+                                                    </if>
+                                                </then>
+                                                <else>
+                                                    <output expression="&quot;invalid input. please select a function between 1 and 3.&quot;" newline="True"/>
+                                                </else>
+                                            </if>
+                                        </else>
+                                    </if>
+                                </else>
+                            </if>
+                        </then>
+                        <else>
+                            <assign variable="bool[i]" expression="False"/>
+                            <if expression="n=1">
+                                <then>
+                                    <output expression="&quot;no such account exists&quot;" newline="True"/>
+                                </then>
+                                <else/>
+                            </if>
+                        </else>
+                    </if>
+                </for>
+                <declare name="b" type="Boolean" array="False" size=""/>
+                <if expression="n &gt;2">
+                    <then>
+                        <for variable="i" start="0" end="n-2" direction="inc" step="1">
+                            <if expression="bool[i] || bool[i+1] == False">
+                                <then>
+                                    <assign variable="b" expression="False"/>
+                                </then>
+                                <else>
+                                    <assign variable="b" expression="True"/>
+                                </else>
+                            </if>
+                        </for>
+                        <if expression="b = True">
+                            <then/>
+                            <else>
+                                <output expression="&quot;no such account exists&quot;" newline="True"/>
+                            </else>
+                        </if>
+                    </then>
+                    <else/>
+                </if>
+                <output expression="&quot;would you like to use the bank again(y/n)&quot;" newline="True"/>
+                <input variable="will"/>
+                <while expression="will!=&quot;y&quot; &amp;&amp; will!=&quot;n&quot;">
+                    <output expression="&quot;please enter y or n&quot;" newline="True"/>
+                    <input variable="will"/>
+                </while>
+            </do>
+            <output expression="&quot;Thank you for using this atm.&quot;" newline="True"/>
+        </body>
+    </function>
+    <function name="s" type="None" variable="">
+        <parameters>
+            <parameter name="d" type="Integer" array="False"/>
+        </parameters>
+        <body/>
+    </function>
+</flowgorithm>

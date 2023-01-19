@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="3.0">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="user"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2023-01-06 11:59:43 PM"/>
+        <attribute name="created" value="dXNlcjtSQUFTOzIwMjMtMDEtMDY7MTE6NDA6MjcgUE07MjAxNQ=="/>
+        <attribute name="edited" value="dXNlcjtSQUFTOzIwMjMtMDEtMDY7MTE6NTk6NDMgUE07NTsyMTM1"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="n, i" type="Integer" array="False" size=""/>
+            <declare name="f" type="String" array="False" size=""/>
+            <output expression="&quot;enter number of numbers that you would like to find factorial for&quot;" newline="True"/>
+            <input variable="n"/>
+            <while expression="n&lt;=0">
+                <output expression="&quot;please input valid number (&gt;0)&quot;" newline="True"/>
+                <input variable="n"/>
+            </while>
+            <declare name="store" type="Integer" array="True" size="n"/>
+            <for variable="i" start="0" end="n-1" direction="inc" step="1">
+                <output expression="&quot;enter number &quot; &amp;i+1&amp; &quot; that you would like to find the factorial of&quot;" newline="True"/>
+                <input variable="store[i]"/>
+            </for>
+            <for variable="i" start="0" end="n-1" direction="inc" step="1">
+                <assign variable="f" expression="fact(store[i])"/>
+                <output expression="&quot;the factorial of &quot;&amp;store[i]&amp; &quot; is &quot;&amp;f" newline="True"/>
+            </for>
+        </body>
+    </function>
+    <function name="fact" type="String" variable="factorial">
+        <parameters>
+            <parameter name="a" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="factorial" type="String" array="False" size=""/>
+            <declare name="j, k" type="Integer" array="False" size=""/>
+            <assign variable="k" expression="1"/>
+            <if expression="a&gt;=0">
+                <then>
+                    <if expression="a&gt;0">
+                        <then>
+                            <for variable="j" start="1" end="a" direction="inc" step="1">
+                                <assign variable="k" expression="k*j"/>
+                            </for>
+                            <assign variable="factorial" expression="ToString(k)"/>
+                        </then>
+                        <else>
+                            <assign variable="factorial" expression="&quot;1&quot;"/>
+                        </else>
+                    </if>
+                </then>
+                <else>
+                    <assign variable="factorial" expression="&quot;not defined as it is negative.&quot;"/>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>
