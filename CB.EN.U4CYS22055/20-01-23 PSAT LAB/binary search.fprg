@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="3.0">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="cb.en.u4cys22055"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2023-01-20 10:54:14 AM"/>
+        <attribute name="created" value="Y2IuZW4udTRjeXMyMjAzMTsyMDIyMjNNQVlDMDA1NjsyMDIzLTAxLTIwOzEwOjE0OjMyIEFNOzMzMDI="/>
+        <attribute name="edited" value="Y2IuZW4udTRjeXMyMjAzMTsyMDIyMjNNQVlDMDA1NjsyMDIzLTAxLTIwOzEwOjE0OjM0IEFNOzE7Y2IuZW4udTRjeXMyMjAzMTsyMDIyMjNNQVlDMDA1NjsyMDIzLTAxLTIwOzEwOjA4OjIyIEFNO2xpbmVhciBzZWFyY2guZnByZzs4NjA4"/>
+        <attribute name="edited" value="Y2IuZW4udTRjeXMyMjAzMTsyMDIyMjNNQVlDMDA1NjsyMDIzLTAxLTIwOzEwOjU0OjE0IEFNOzE1OzM0Njc="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="x" type="Integer" array="True" size="5"/>
+            <declare name="i, n, d, t, r, m" type="Integer" array="False" size=""/>
+            <for variable="i" start="0" end="4" direction="inc" step="1">
+                <input variable="x[i]"/>
+            </for>
+            <output expression="&quot;enter element to be searched&quot;" newline="True"/>
+            <input variable="n"/>
+            <assign variable="d" expression="0"/>
+            <assign variable="t" expression="4"/>
+            <assign variable="r" expression="-1"/>
+            <while expression="d&lt;=t">
+                <assign variable="m" expression="(d+t)/2"/>
+                <if expression="x[m]&lt;=n">
+                    <then>
+                        <assign variable="d" expression="m+1"/>
+                        <if expression="x[m]=n">
+                            <then>
+                                <assign variable="r" expression="m"/>
+                            </then>
+                            <else/>
+                        </if>
+                    </then>
+                    <else>
+                        <assign variable="t" expression="m-1"/>
+                    </else>
+                </if>
+            </while>
+            <output expression="&quot;index of element is&quot;&amp;r" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>

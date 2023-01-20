@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="3.0">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="cb.en.u4cys22055"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2023-01-20 10:13:35 AM"/>
+        <attribute name="created" value="Y2IuZW4udTRjeXMyMjAzMTsyMDIyMjNNQVlDMDA1NjsyMDIzLTAxLTIwOzEwOjA4OjIyIEFNOzMzMDQ="/>
+        <attribute name="edited" value="Y2IuZW4udTRjeXMyMjAzMTsyMDIyMjNNQVlDMDA1NjsyMDIzLTAxLTIwOzEwOjA4OjI0IEFNOzE7Y2IuZW4udTRjeXMyMjAzMTsyMDIyMjNNQVlDMDA1NjsyMDIzLTAxLTIwOzA5OjU2OjA5IEFNO2J1YmJsZSBzb3J0LmZwcmc7ODQzNw=="/>
+        <attribute name="edited" value="Y2IuZW4udTRjeXMyMjAzMTsyMDIyMjNNQVlDMDA1NjsyMDIzLTAxLTIwOzEwOjEzOjM1IEFNOzE7MzQxMg=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="x" type="Integer" array="True" size="5"/>
+            <declare name="i, n, d, t" type="Integer" array="False" size=""/>
+            <assign variable="x[0]" expression="64"/>
+            <assign variable="x[1]" expression="5"/>
+            <assign variable="x[2]" expression="46"/>
+            <assign variable="x[3]" expression="33"/>
+            <assign variable="x[4]" expression="2"/>
+            <output expression="&quot;enter element to be searched&quot;" newline="True"/>
+            <input variable="n"/>
+            <assign variable="d" expression="-1"/>
+            <for variable="i" start="0" end="4" direction="inc" step="1">
+                <if expression="n=x[i]">
+                    <then>
+                        <assign variable="d" expression="i"/>
+                    </then>
+                    <else/>
+                </if>
+            </for>
+            <if expression="d=-1">
+                <then>
+                    <output expression="&quot;the element is not in the array&quot;" newline="True"/>
+                </then>
+                <else>
+                    <output expression="&quot;the element is in index of &quot;&amp;d" newline="True"/>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>
