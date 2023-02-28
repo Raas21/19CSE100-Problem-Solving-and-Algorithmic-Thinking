@@ -1,0 +1,594 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="3.0">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="user"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2023-02-08 05:36:05 PM"/>
+        <attribute name="created" value="dXNlcjtSQUFTOzIwMjMtMDEtMTE7MTE6MDk6MjggUE07MjAxNw=="/>
+        <attribute name="edited" value="dXNlcjtSQUFTOzIwMjMtMDItMDQ7MDk6MTg6NDQgUE07Mjt1c2VyO1JBQVM7MjAyMy0wMi0wNDswNzoxMjo0NiBQTTt0ZW1wc2F2ZXRpY3RhY3RvcGFydC5mcHJnOzY5MTU="/>
+        <attribute name="edited" value="dXNlcjtSQUFTOzIwMjMtMDItMDg7MDU6MzY6MDUgUE07Mzg7MjE4OA=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="values" type="Integer" array="True" size="9"/>
+            <comment text="Declaring values array, to store all chosen values"/>
+            <declare name="count, count2, position, checkcount, WinCondition, choice, temp, row, column, player" type="Integer" array="False" size=""/>
+            <comment text="Declaring miscellaneous variables used in program"/>
+            <comment text="Getting the users choice of symbol, X or O"/>
+            <declare name="choicechar" type="String" array="False" size=""/>
+            <do expression="player!=1 &amp;&amp; player!=2">
+                <output expression="&quot;Enter game mode - 1 for Single Player - 2 for Two-Player&quot;" newline="True"/>
+                <input variable="player"/>
+            </do>
+            <assign variable="WinCondition" expression="0"/>
+            <comment text="initializing win condition to run loop"/>
+            <for variable="count" start="0" end="8" direction="inc" step="1">
+                <assign variable="values[count]" expression="0"/>
+            </for>
+            <if expression="player==1">
+                <then>
+                    <comment text="Repeating until valid input is given"/>
+                    <do expression="choicechar!=&quot;X&quot; &amp;&amp; choicechar!=&quot;O&quot; &amp;&amp; choicechar!=&quot;x&quot; &amp;&amp; choicechar!=&quot;o&quot;">
+                        <output expression="&quot;Enter your choice, X or O&quot;" newline="True"/>
+                        <input variable="choicechar"/>
+                    </do>
+                    <comment text="giving user choice an integral value for ease of operation"/>
+                    <if expression="choicechar==&quot;X&quot; || choicechar==&quot;x&quot;">
+                        <then>
+                            <assign variable="choice" expression="1"/>
+                        </then>
+                        <else>
+                            <assign variable="choice" expression="2"/>
+                        </else>
+                    </if>
+                    <comment text="initialising values of all columns &#13;&#10;uninitialised values cant be compared"/>
+                    <comment text="letting user go first or second based on their choice"/>
+                    <if expression="choice == 1">
+                        <then>
+                            <while expression="WinCondition!=1">
+                                <comment text="if user goes first, computer goes second"/>
+                                <do expression="values[(row-1)*3+column-1] != 0">
+                                    <comment text="getting valid row and column inputs from the user"/>
+                                    <do expression="row &lt; 1 || row &gt; 3">
+                                        <output expression="&quot;Enter the position value you wish to mark, enter row number (1-3) -&quot;" newline="True"/>
+                                        <input variable="row"/>
+                                    </do>
+                                    <do expression="column &lt; 1 || column &gt; 3">
+                                        <output expression="&quot;Enter the position value you wish to mark, enter column number (1-3) -&quot;" newline="True"/>
+                                        <input variable="column"/>
+                                    </do>
+                                </do>
+                                <comment text="assigning user choice to desired position"/>
+                                <assign variable="values[(row-1)*3+column-1]" expression="choice"/>
+                                <comment text="checking if user won"/>
+                                <assign variable="WinCondition" expression="checkwin(values, choice)"/>
+                                <comment text="assigning a random spot to computer"/>
+                                <if expression="WinCondition!=1">
+                                    <then>
+                                        <call expression="computerturn(values, choice)"/>
+                                    </then>
+                                    <else/>
+                                </if>
+                                <call expression="display(values)"/>
+                                <comment text="checking if computer won"/>
+                                <assign variable="WinCondition" expression="checkwin(values, choice)"/>
+                            </while>
+                        </then>
+                        <else>
+                            <while expression="WinCondition!=1">
+                                <comment text="if user goes second, computer goes first"/>
+                                <comment text="assigning a random spot to computer"/>
+                                <call expression="computerturn(values, choice)"/>
+                                <call expression="display(values)"/>
+                                <comment text="checking if computer won"/>
+                                <assign variable="WinCondition" expression="checkwin(values, choice)"/>
+                                <if expression="WinCondition!=1">
+                                    <then>
+                                        <do expression="values[(row-1)*3+column-1] != 0">
+                                            <comment text="getting valid row and column inputs from the user"/>
+                                            <do expression="row &lt; 1 || row &gt; 3">
+                                                <output expression="&quot;Enter the position value you wish to mark, enter row number (1-3) -&quot;" newline="True"/>
+                                                <input variable="row"/>
+                                            </do>
+                                            <do expression="column &lt; 1 || column &gt; 3">
+                                                <output expression="&quot;Enter the position value you wish to mark, enter column number (1-3) -&quot;" newline="True"/>
+                                                <input variable="column"/>
+                                            </do>
+                                        </do>
+                                        <assign variable="values[(row-1)*3+column-1]" expression="choice"/>
+                                        <comment text="checking if user won"/>
+                                        <assign variable="WinCondition" expression="checkwin(values, choice)"/>
+                                    </then>
+                                    <else/>
+                                </if>
+                                <comment text="assigning user choice to desired position"/>
+                            </while>
+                        </else>
+                    </if>
+                </then>
+                <else>
+                    <while expression="WinCondition!=1">
+                        <comment text="Player 1 Turn"/>
+                        <do expression="values[(row-1)*3+column-1] != 0">
+                            <comment text="getting valid row and column inputs from the user"/>
+                            <do expression="row &lt; 1 || row &gt; 3">
+                                <output expression="&quot;Enter the position value you wish to mark, enter row number (1-3) - PLAYER 1&quot;" newline="True"/>
+                                <input variable="row"/>
+                            </do>
+                            <do expression="column &lt; 1 || column &gt; 3">
+                                <output expression="&quot;Enter the position value you wish to mark, enter column number (1-3) - PLAYER 1&quot;" newline="True"/>
+                                <input variable="column"/>
+                            </do>
+                        </do>
+                        <comment text="assigning user choice to desired position"/>
+                        <assign variable="values[(row-1)*3+column-1]" expression="1"/>
+                        <comment text="displaying the board"/>
+                        <call expression="display(values)"/>
+                        <comment text="checking if user won"/>
+                        <assign variable="WinCondition" expression="checkwin(values, 1)"/>
+                        <comment text="Player 2 turn"/>
+                        <if expression="WinCondition!=1">
+                            <then>
+                                <comment text="Player 2 turn"/>
+                                <do expression="values[(row-1)*3+column-1] != 0">
+                                    <comment text="getting valid row and column inputs from the user"/>
+                                    <do expression="row &lt; 1 || row &gt; 3">
+                                        <output expression="&quot;Enter the position value you wish to mark, enter row number (1-3) - PLAYER 2&quot;" newline="True"/>
+                                        <input variable="row"/>
+                                    </do>
+                                    <do expression="column &lt; 1 || column &gt; 3">
+                                        <output expression="&quot;Enter the position value you wish to mark, enter column number (1-3) - PLAYER 2&quot;" newline="True"/>
+                                        <input variable="column"/>
+                                    </do>
+                                </do>
+                                <comment text="assigning user choice to desired position"/>
+                                <assign variable="values[(row-1)*3+column-1]" expression="2"/>
+                                <comment text="displaying the board"/>
+                                <call expression="display(values)"/>
+                                <comment text="checking if user won"/>
+                                <assign variable="WinCondition" expression="checkwin(values, 2)"/>
+                            </then>
+                            <else/>
+                        </if>
+                    </while>
+                </else>
+            </if>
+        </body>
+    </function>
+    <function name="checkwin" type="Integer" variable="check">
+        <parameters>
+            <parameter name="values" type="Integer" array="True"/>
+            <parameter name="choice" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="check, checkcount, temp" type="Integer" array="False" size=""/>
+            <assign variable="check" expression="0"/>
+            <for variable="checkcount" start="0" end="7" direction="inc" step="3">
+                <if expression="values[checkcount]==values[checkcount+1] &amp;&amp; values[checkcount+1]==values[checkcount+2]">
+                    <then>
+                        <if expression="values[checkcount]!=0">
+                            <then>
+                                <assign variable="check" expression="1"/>
+                                <if expression="values[checkcount]==choice">
+                                    <then>
+                                        <output expression="&quot;CONGRATULATIONS, YOU WON&quot;" newline="True"/>
+                                    </then>
+                                    <else>
+                                        <output expression="&quot;BOO-HOO, YOU LOST&quot;" newline="True"/>
+                                    </else>
+                                </if>
+                            </then>
+                            <else/>
+                        </if>
+                    </then>
+                    <else/>
+                </if>
+            </for>
+            <for variable="checkcount" start="0" end="2" direction="inc" step="1">
+                <if expression="values[checkcount]==values[checkcount+3] &amp;&amp; values[checkcount+3]==values[checkcount+6]">
+                    <then>
+                        <if expression="values[checkcount]!=0">
+                            <then>
+                                <assign variable="check" expression="1"/>
+                                <if expression="values[checkcount]==choice">
+                                    <then>
+                                        <output expression="&quot;CONGRATULATIONS, YOU WON&quot;" newline="True"/>
+                                    </then>
+                                    <else>
+                                        <output expression="&quot;BOO-HOO, YOU LOST&quot;" newline="True"/>
+                                    </else>
+                                </if>
+                            </then>
+                            <else/>
+                        </if>
+                    </then>
+                    <else/>
+                </if>
+            </for>
+            <for variable="checkcount" start="0" end="2" direction="inc" step="2">
+                <if expression="values[checkcount]==values[4] &amp;&amp; values[checkcount]==values[8-checkcount]">
+                    <then>
+                        <if expression="values[checkcount]!=0">
+                            <then>
+                                <assign variable="check" expression="1"/>
+                                <if expression="values[checkcount]==choice">
+                                    <then>
+                                        <output expression="&quot;CONGRATULATIONS, YOU WON&quot;" newline="True"/>
+                                    </then>
+                                    <else>
+                                        <output expression="&quot;BOO-HOO, YOU LOST&quot;" newline="True"/>
+                                    </else>
+                                </if>
+                            </then>
+                            <else/>
+                        </if>
+                    </then>
+                    <else/>
+                </if>
+            </for>
+            <assign variable="temp" expression="0"/>
+            <for variable="checkcount" start="0" end="8" direction="inc" step="1">
+                <if expression="values[checkcount]==0">
+                    <then>
+                        <assign variable="temp" expression="temp+1"/>
+                    </then>
+                    <else/>
+                </if>
+            </for>
+            <if expression="temp==0">
+                <then>
+                    <assign variable="check" expression="1"/>
+                    <if expression="check==1">
+                        <then>
+                            <output expression="&quot;It's a draw&quot;" newline="True"/>
+                        </then>
+                        <else/>
+                    </if>
+                </then>
+                <else/>
+            </if>
+        </body>
+    </function>
+    <function name="computerturn" type="None" variable="">
+        <parameters>
+            <parameter name="values" type="Integer" array="True"/>
+            <parameter name="choice" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="temp, count" type="Integer" array="False" size=""/>
+            <assign variable="temp" expression="0"/>
+            <if expression="temp!=1 &amp;&amp; values[0]!=0 &amp;&amp; values[0]==values[1] &amp;&amp; values[2]==0">
+                <then>
+                    <assign variable="values[2]" expression="choice%2+1"/>
+                    <assign variable="temp" expression="1"/>
+                </then>
+                <else/>
+            </if>
+            <if expression="temp!=1 &amp;&amp; values[0]!=0 &amp;&amp; values[0]==values[2]  &amp;&amp; values[1]==0">
+                <then>
+                    <assign variable="values[1]" expression="choice%2+1"/>
+                    <assign variable="temp" expression="1"/>
+                </then>
+                <else/>
+            </if>
+            <if expression="temp!=1 &amp;&amp; values[0]!=0 &amp;&amp; values[0]==values[3] &amp;&amp; values[6]==0">
+                <then>
+                    <assign variable="values[6]" expression="choice%2+1"/>
+                    <assign variable="temp" expression="1"/>
+                </then>
+                <else/>
+            </if>
+            <if expression="temp!=1 &amp;&amp; values[0]!=0 &amp;&amp; values[0]==values[6] &amp;&amp; values[3]==0">
+                <then>
+                    <assign variable="values[3]" expression="choice%2+1"/>
+                    <assign variable="temp" expression="1"/>
+                </then>
+                <else/>
+            </if>
+            <if expression="temp!=1 &amp;&amp; values[0]!=0 &amp;&amp; values[0]==values[4] &amp;&amp; values[8]==0">
+                <then>
+                    <assign variable="values[8]" expression="choice%2+1"/>
+                    <assign variable="temp" expression="1"/>
+                </then>
+                <else/>
+            </if>
+            <if expression="temp!=1 &amp;&amp; values[0]!=0 &amp;&amp; values[0]==values[8] &amp;&amp; values[4]==0">
+                <then>
+                    <assign variable="values[4]" expression="choice%2+1"/>
+                    <assign variable="temp" expression="1"/>
+                </then>
+                <else/>
+            </if>
+            <if expression="temp!=1 &amp;&amp; values[2]!=0 &amp;&amp; values[2]==values[1] &amp;&amp; values[0]==0">
+                <then>
+                    <assign variable="values[0]" expression="choice%2+1"/>
+                    <assign variable="temp" expression="1"/>
+                </then>
+                <else/>
+            </if>
+            <if expression="temp!=1 &amp;&amp; values[2]!=0 &amp;&amp; values[2]==values[6] &amp;&amp; values[4]==0">
+                <then>
+                    <assign variable="values[4]" expression="choice%2+1"/>
+                    <assign variable="temp" expression="1"/>
+                </then>
+                <else/>
+            </if>
+            <if expression="temp!=1 &amp;&amp; values[2]!=0 &amp;&amp; values[2]==values[5] &amp;&amp; values[8]==0">
+                <then>
+                    <assign variable="values[8]" expression="choice%2+1"/>
+                    <assign variable="temp" expression="1"/>
+                </then>
+                <else/>
+            </if>
+            <if expression="temp!=1 &amp;&amp; values[2]!=0 &amp;&amp; values[2]==values[8] &amp;&amp; values[5]==0">
+                <then>
+                    <assign variable="values[5]" expression="choice%2+1"/>
+                    <assign variable="temp" expression="1"/>
+                </then>
+                <else/>
+            </if>
+            <if expression="temp!=1 &amp;&amp; values[6]!=0 &amp;&amp; values[6]==values[3] &amp;&amp; values[0]==0">
+                <then>
+                    <assign variable="values[0]" expression="choice%2+1"/>
+                    <assign variable="temp" expression="1"/>
+                </then>
+                <else/>
+            </if>
+            <if expression="temp!=1 &amp;&amp; values[6]!=0 &amp;&amp; values[6]==values[7] &amp;&amp; values[8]==0">
+                <then>
+                    <assign variable="values[8]" expression="choice%2+1"/>
+                    <assign variable="temp" expression="1"/>
+                </then>
+                <else/>
+            </if>
+            <if expression="temp!=1 &amp;&amp; values[6]!=0 &amp;&amp; values[6]==values[8] &amp;&amp; values[7]==0">
+                <then>
+                    <assign variable="values[7]" expression="choice%2+1"/>
+                    <assign variable="temp" expression="1"/>
+                </then>
+                <else/>
+            </if>
+            <if expression="temp!=1 &amp;&amp; values[8]!=0 &amp;&amp; values[8]==values[7] &amp;&amp; values[6]==0">
+                <then>
+                    <assign variable="values[6]" expression="choice%2+1"/>
+                    <assign variable="temp" expression="1"/>
+                </then>
+                <else/>
+            </if>
+            <if expression="temp!=1 &amp;&amp; values[8]!=0 &amp;&amp; values[8]==values[5] &amp;&amp; values[2]==0">
+                <then>
+                    <assign variable="values[2]" expression="choice%2+1"/>
+                    <assign variable="temp" expression="1"/>
+                </then>
+                <else/>
+            </if>
+            <if expression="temp!=1 &amp;&amp; values[1]!=0 &amp;&amp; values[1]==values[4] &amp;&amp; values[7]==0">
+                <then>
+                    <assign variable="values[7]" expression="choice%2+1"/>
+                    <assign variable="temp" expression="1"/>
+                </then>
+                <else/>
+            </if>
+            <if expression="temp!=1 &amp;&amp; values[1]!=0 &amp;&amp; values[1]==values[7] &amp;&amp; values[4]==0">
+                <then>
+                    <assign variable="values[4]" expression="choice%2+1"/>
+                    <assign variable="temp" expression="1"/>
+                </then>
+                <else/>
+            </if>
+            <if expression="temp!=1 &amp;&amp; values[3]!=0 &amp;&amp; values[3]==values[4] &amp;&amp; values[5]==0">
+                <then>
+                    <assign variable="values[5]" expression="choice%2+1"/>
+                    <assign variable="temp" expression="1"/>
+                </then>
+                <else/>
+            </if>
+            <if expression="temp!=1 &amp;&amp; values[3]!=0 &amp;&amp; values[3]==values[5] &amp;&amp; values[4]==0">
+                <then>
+                    <assign variable="values[4]" expression="choice%2+1"/>
+                    <assign variable="temp" expression="1"/>
+                </then>
+                <else/>
+            </if>
+            <if expression="temp!=1 &amp;&amp; values[4]!=0 &amp;&amp; values[4]==values[5] &amp;&amp; values[3]==0">
+                <then>
+                    <assign variable="values[3]" expression="choice%2+1"/>
+                    <assign variable="temp" expression="1"/>
+                </then>
+                <else/>
+            </if>
+            <if expression="temp!=1 &amp;&amp; values[4]!=0 &amp;&amp; values[4]==values[7] &amp;&amp; values[1]==0">
+                <then>
+                    <assign variable="values[1]" expression="choice%2+1"/>
+                    <assign variable="temp" expression="1"/>
+                </then>
+                <else/>
+            </if>
+            <if expression="temp!=1 &amp;&amp; values[4]==0">
+                <then>
+                    <assign variable="values[4]" expression="choice%2+1"/>
+                    <assign variable="temp" expression="1"/>
+                </then>
+                <else/>
+            </if>
+            <if expression="temp!=1 &amp;&amp; values[0]==choice">
+                <then>
+                    <if expression="values[8]==0">
+                        <then>
+                            <assign variable="values[8]" expression="choice%2+1"/>
+                            <assign variable="temp" expression="1"/>
+                        </then>
+                        <else/>
+                    </if>
+                </then>
+                <else/>
+            </if>
+            <if expression="temp!=1 &amp;&amp; values[2]==choice">
+                <then>
+                    <if expression="values[6]==0">
+                        <then>
+                            <assign variable="values[6]" expression="choice%2+1"/>
+                            <assign variable="temp" expression="1"/>
+                        </then>
+                        <else/>
+                    </if>
+                </then>
+                <else/>
+            </if>
+            <if expression="temp!=1 &amp;&amp; values[6]==choice">
+                <then>
+                    <if expression="values[2]==0">
+                        <then>
+                            <assign variable="values[2]" expression="choice%2+1"/>
+                            <assign variable="temp" expression="1"/>
+                        </then>
+                        <else/>
+                    </if>
+                </then>
+                <else/>
+            </if>
+            <if expression="temp!=1 &amp;&amp; values[8]==choice">
+                <then>
+                    <if expression="values[0]==0">
+                        <then>
+                            <assign variable="values[0]" expression="choice%2+1"/>
+                            <assign variable="temp" expression="1"/>
+                        </then>
+                        <else/>
+                    </if>
+                </then>
+                <else/>
+            </if>
+            <if expression="temp!=1 &amp;&amp; values[0]==values[8] &amp;&amp; values[0]==choice">
+                <then>
+                    <if expression="values[3]==0">
+                        <then>
+                            <assign variable="values[3]" expression="choice%2+1"/>
+                            <assign variable="temp" expression="1"/>
+                        </then>
+                        <else>
+                            <if expression="values[5]==0">
+                                <then>
+                                    <assign variable="values[5]" expression="choice%2+1"/>
+                                    <assign variable="temp" expression="1"/>
+                                </then>
+                                <else>
+                                    <if expression="values[7]==0">
+                                        <then>
+                                            <assign variable="values[7]" expression="choice%2+1"/>
+                                            <assign variable="temp" expression="1"/>
+                                        </then>
+                                        <else/>
+                                    </if>
+                                </else>
+                            </if>
+                        </else>
+                    </if>
+                </then>
+                <else/>
+            </if>
+            <if expression="temp!=1 &amp;&amp; values[2]==values[6] &amp;&amp; values[2]==choice">
+                <then>
+                    <if expression="values[3]==0">
+                        <then>
+                            <assign variable="values[3]" expression="choice%2+1"/>
+                            <assign variable="temp" expression="1"/>
+                        </then>
+                        <else>
+                            <if expression="values[1]==0">
+                                <then>
+                                    <assign variable="values[1]" expression="choice%2+1"/>
+                                    <assign variable="temp" expression="1"/>
+                                </then>
+                                <else>
+                                    <if expression="values[5]==0">
+                                        <then>
+                                            <assign variable="values[5]" expression="choice%2+1"/>
+                                            <assign variable="temp" expression="1"/>
+                                        </then>
+                                        <else/>
+                                    </if>
+                                </else>
+                            </if>
+                        </else>
+                    </if>
+                </then>
+                <else/>
+            </if>
+            <if expression="temp!=1 &amp;&amp; values[0]==0">
+                <then>
+                    <assign variable="values[0]" expression="choice%2+1"/>
+                    <assign variable="temp" expression="1"/>
+                </then>
+                <else/>
+            </if>
+            <if expression="temp!=1 &amp;&amp; values[2]==0">
+                <then>
+                    <assign variable="values[2]" expression="choice%2+1"/>
+                    <assign variable="temp" expression="1"/>
+                </then>
+                <else/>
+            </if>
+            <if expression="temp!=1 &amp;&amp; values[6]==0">
+                <then>
+                    <assign variable="values[6]" expression="choice%2+1"/>
+                    <assign variable="temp" expression="1"/>
+                </then>
+                <else/>
+            </if>
+            <if expression="temp!=1 &amp;&amp; values[8]==0">
+                <then>
+                    <assign variable="values[8]" expression="choice%2+1"/>
+                    <assign variable="temp" expression="1"/>
+                </then>
+                <else/>
+            </if>
+            <if expression="temp!=1">
+                <then>
+                    <for variable="count" start="0" end="8" direction="inc" step="1">
+                        <if expression="values[count]==0">
+                            <then>
+                                <assign variable="values[count]" expression="choice%2+1"/>
+                                <assign variable="temp" expression="1"/>
+                                <assign variable="count" expression="10"/>
+                            </then>
+                            <else/>
+                        </if>
+                    </for>
+                </then>
+                <else/>
+            </if>
+        </body>
+    </function>
+    <function name="display" type="None" variable="">
+        <parameters>
+            <parameter name="values" type="Integer" array="True"/>
+        </parameters>
+        <body>
+            <declare name="count, count2" type="Integer" array="False" size=""/>
+            <for variable="count" start="0" end="2" direction="inc" step="1">
+                <output expression="&quot;| &quot;" newline="False"/>
+                <for variable="count2" start="0" end="2" direction="inc" step="1">
+                    <if expression="values[count*3+count2]==0">
+                        <then>
+                            <output expression="&quot;    | &quot;" newline="False"/>
+                        </then>
+                        <else>
+                            <if expression="values[count*3+count2]==1">
+                                <then>
+                                    <output expression="&quot;X  | &quot;" newline="False"/>
+                                </then>
+                                <else>
+                                    <output expression="&quot;O  | &quot;" newline="False"/>
+                                </else>
+                            </if>
+                        </else>
+                    </if>
+                </for>
+                <output expression="ToChar(13)" newline="False"/>
+            </for>
+        </body>
+    </function>
+</flowgorithm>
